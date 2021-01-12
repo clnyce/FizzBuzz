@@ -8,14 +8,26 @@ document.getElementById("btnFizz").addEventListener("click", function(){
     //Create an array to display on sceen
     let fizzBuzz = "";
  
+    //Check to ensure only numbers have been entered
+    if (isNaN(numFizz)) {
+        swal("Unable to process", "Please enter a number in each box!", "error");
+        ClearFizzBuzzData();
+        return;
+    }
+    if (isNaN(numBuzz)) {
+        swal("Unable to process", "Please enter a number in each box!", "error");
+        ClearFizzBuzzData();
+        return;
+    }
+    
     //Check to ensure both numbers entered are between 1 and 100
     if (numFizz > 100 || numBuzz > 100) {
-        alert("Please enter a number between 1 and 100.");
+        swal("Invalid Number", "Please enter a number between 1 and 100!", "error");
         ClearFizzBuzzData();
         return;
     }
     if (numFizz < 1 || numBuzz < 1) {
-        alert("Please enter a number between 1 and 100.");
+        swal("Invalid Number", "Please enter a number between 1 and 100!", "error");
         ClearFizzBuzzData();
         return;
     }
@@ -57,6 +69,7 @@ document.getElementById("btnFizz").addEventListener("click", function(){
  
     //Display multiples on screen
     document.getElementById('resultsFizzBuzz').innerHTML = fizzBuzz;
+    ClearFizzBuzzData();
 });
 
 function ClearFizzBuzzData(){
