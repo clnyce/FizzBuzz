@@ -35,6 +35,7 @@ document.getElementById("btnFizz").addEventListener("click", function(){
     //Loop through numbers 1 through 100 and determine if each number is a fizz, buzz, or fizzbuzz
     //Store results in fizzBuzz array
     for (k = 1; k < 101; k++) {
+        // Check if both numbers mod to zero for FizzBuzz
         if ((k % numFizz == 0) && (k % numBuzz == 0)) {
             if (k == 100) {
                 fizzBuzz += "<b><font color='red'>FizzBuzz</font></b>";
@@ -43,6 +44,7 @@ document.getElementById("btnFizz").addEventListener("click", function(){
                 fizzBuzz += "<b><font color='red'>FizzBuzz</font></b>" + ", ";
             }
         }
+        // Check if only 1st number mods to zero - "Fizz"
         else if ((k % numFizz == 0)) {
             if (k == 100) {
                 fizzBuzz += "<b><i><font color='blue'>Fizz</font></i></b>";
@@ -51,6 +53,7 @@ document.getElementById("btnFizz").addEventListener("click", function(){
                 fizzBuzz += "<b><i><font color='blue'>Fizz</font></i></b>" + ", ";
             }
         }
+        // Check if only 2nd number mods to zero - "Buzz"
         else if ((k % numBuzz == 0)) {
             if (k == 100) {
                 fizzBuzz += "<b><i><font color='orange'>Buzz</font></i></b>";
