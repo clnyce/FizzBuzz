@@ -5,7 +5,7 @@ document.getElementById("btnFizz").addEventListener("click", function(){
     let numFizz = parseInt(document.getElementById("numFizz").value);
     let numBuzz = parseInt(document.getElementById("numBuzz").value);
  
-    //Create an array to display on sceen
+    //Create a variable to display output on sceen
     let fizzBuzz = "";
  
     //Check to ensure only numbers have been entered

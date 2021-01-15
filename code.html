@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,6 +26,7 @@
 
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <a class="navbar-brand" href="/index.html">Fizz Buzz</a>
         <div class="container">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -56,7 +56,7 @@
     <!-- Page Content -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 text-center offset-2">
+            <div class="col-lg-10 text-center offset-2">
                 <h1 class="mt-5" style="color: aliceblue;">Click the button to see my JS code</h1>
                 <p class="lead" style="color: aliceblue;">Syntax is highlighted using Prism.js</p>
                 <div class="accordion" id="accordionExample">
@@ -71,80 +71,82 @@
                         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionExample">
                             <div class="card-body">
 <pre class="line-numbers">
-<code class="language-javascript">
-    //FizzBuzz Function
-    document.getElementById("btnFizz").addEventListener("click", function(){
+<code class="language-javascript">//FizzBuzz Function
+document.getElementById("btnFizz").addEventListener("click", function(){
+
+    //This assigns the input numbers to variables
+    let numFizz = parseInt(document.getElementById("numFizz").value);
+    let numBuzz = parseInt(document.getElementById("numBuzz").value);
     
-        //This assigns the input numbers to variables
-        let numFizz = parseInt(document.getElementById("numFizz").value);
-        let numBuzz = parseInt(document.getElementById("numBuzz").value);
-     
-        //Create an array to display on sceen
-        let fizzBuzz = "";
-     
-        //Check to ensure only numbers have been entered
-        if (isNaN(numFizz)) {
-            swal("Unable to process", "Please enter a number in each box!", "error");
-            ClearFizzBuzzData();
-            return;
-        }
-        if (isNaN(numBuzz)) {
-            swal("Unable to process", "Please enter a number in each box!", "error");
-            ClearFizzBuzzData();
-            return;
-        }
-        
-        //Check to ensure both numbers entered are between 1 and 100
-        if (numFizz > 100 || numBuzz > 100) {
-            swal("Invalid Number", "Please enter a number between 1 and 100!", "error");
-            ClearFizzBuzzData();
-            return;
-        }
-        if (numFizz < 1 || numBuzz < 1) {
-            swal("Invalid Number", "Please enter a number between 1 and 100!", "error");
-            ClearFizzBuzzData();
-            return;
-        }
-     
-        //Loop through numbers 1 through 100 and determine if each number is a fizz, buzz, or fizzbuzz
-        //Store results in fizzBuzz array
-        for (k = 1; k < 101; k++) {
-            if ((k % numFizz == 0) && (k % numBuzz == 0)) {
-                if (k == 100) {
-                    fizzBuzz += "<b><font color='red'>FizzBuzz</font></b>";
-                }
-                else {
-                    fizzBuzz += "<b><font color='red'>FizzBuzz</font></b>" + ", ";
-                }
-            }
-            else if ((k % numFizz == 0)) {
-                if (k == 100) {
-                    fizzBuzz += "<b><i><font color='blue'>Fizz</font></i></b>";
-                }
-                else {
-                    fizzBuzz += "<b><i><font color='blue'>Fizz</font></i></b>" + ", ";
-                }
-            }
-            else if ((k % numBuzz == 0)) {
-                if (k == 100) {
-                    fizzBuzz += "<b><i><font color='orange'>Buzz</font></i></b>";
-                }
-                else {
-                    fizzBuzz += "<b><i><font color='orange'>Buzz</font></i></b>" + ", ";
-                }
+    //Create a variable to display output on sceen
+    let fizzBuzz = "";
+    
+    //Check to ensure only numbers have been entered
+    if (isNaN(numFizz)) {
+        swal("Unable to process", "Please enter a number in each box!", "error");
+        ClearFizzBuzzData();
+        return;
+    }
+    if (isNaN(numBuzz)) {
+        swal("Unable to process", "Please enter a number in each box!", "error");
+        ClearFizzBuzzData();
+        return;
+    }
+    
+    //Check to ensure both numbers entered are between 1 and 100
+    if (numFizz > 100 || numBuzz > 100) {
+        swal("Invalid Number", "Please enter a number between 1 and 100!", "error");
+        ClearFizzBuzzData();
+        return;
+    }
+    if (numFizz < 1 || numBuzz < 1) {
+        swal("Invalid Number", "Please enter a number between 1 and 100!", "error");
+        ClearFizzBuzzData();
+        return;
+    }
+    
+    //Loop through numbers 1 through 100 and determine if each number is a fizz, buzz, or fizzbuzz
+    //Store results in fizzBuzz array
+    for (k = 1; k < 101; k++) {
+        // Check if both numbers mod to zero for FizzBuzz
+        if ((k % numFizz == 0) && (k % numBuzz == 0)) {
+            if (k == 100) {
+                fizzBuzz += "<b><font color='red'>FizzBuzz</font></b>";
             }
             else {
-                if (k == 0) {
-                    fizzBuzz += k;
-                }
-                fizzBuzz += k + ", ";
+                fizzBuzz += "<b><font color='red'>FizzBuzz</font></b>" + ", ";
             }
         }
-     
-        //Display multiples on screen
-        document.getElementById('resultsFizzBuzz').innerHTML = fizzBuzz;
-        ClearFizzBuzzData();
-    });
+        // Check if only 1st number mods to zero - "Fizz"
+        else if ((k % numFizz == 0)) {
+            if (k == 100) {
+                fizzBuzz += "<b><i><font color='blue'>Fizz</font></i></b>";
+            }
+            else {
+                fizzBuzz += "<b><i><font color='blue'>Fizz</font></i></b>" + ", ";
+            }
+        }
+        // Check if only 2nd number mods to zero - "Buzz"
+        else if ((k % numBuzz == 0)) {
+            if (k == 100) {
+                fizzBuzz += "<b><i><font color='orange'>Buzz</font></i></b>";
+            }
+            else {
+                fizzBuzz += "<b><i><font color='orange'>Buzz</font></i></b>" + ", ";
+            }
+        }
+        else {
+            if (k == 0) {
+                fizzBuzz += k;
+            }
+            fizzBuzz += k + ", ";
+        }
+    }
+    
+    //Display multiples on screen
+    document.getElementById('resultsFizzBuzz').innerHTML = fizzBuzz;
+    ClearFizzBuzzData();
+});
 </code>
 </pre>
                             </div>
